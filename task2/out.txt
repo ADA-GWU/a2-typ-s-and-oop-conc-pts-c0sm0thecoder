@@ -1,0 +1,4 @@
+senior.SubmitPullRequest() -> Developer submits a pull request.
+senior.WriteCode() -> Senior Developer writes code.
+intern.SubmitPullRequest() -> Developer submits a pull request.
+intern.WriteCode() -> Intern writes code that destroys prod.
