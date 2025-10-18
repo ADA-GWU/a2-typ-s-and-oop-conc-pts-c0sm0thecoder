@@ -1,10 +1,11 @@
 # This is the general class for all library related items
 class LibraryItem
-  attr_reader :title, :author, :publication_year
+  attr_reader :title, :author, :genre, :publication_year
 
-  def initialize(title, author, publication_year)
+  def initialize(title, author, genre, publication_year)
     @title = title
     @author = author
+    @genre = genre
     @publication_year = publication_year
   end
 
@@ -12,63 +13,66 @@ class LibraryItem
   def display_info
     puts "Title: #{@title}"
     puts "Author: #{@author}"
+    puts "Genre: #{@genre}"
     puts "Publication Year: #{@publication_year}"
   end
 end
 
 # This is the class to represent books. It inherits from the LibraryItem class
 class Book < LibraryItem
-  # Besides the attributes inherited from the parent class, Book also has genre attribute.
-  attr_reader :genre
+  # Besides the attributes inherited from the parent class, Book also has isbn attribute.
+  attr_reader :isbn
 
-  def initialize(title, author, publication_year, genre)
-    super(title, author, publication_year)
-    @genre = genre
+  def initialize(title, author, genre, publication_year, isbn)
+    super(title, author, genre, publication_year)
+    @isbn = isbn
   end
 
-  # Overrides the base method to include genre-specific information.
+  # Overrides the base method to include isbn information.
   def display_info
     puts "Book Details:"
     super
-    puts "Genre: #{@genre}"
+    puts "ISBN: #{@isbn}"
     puts ""
   end
 end
 
 # This is the class for DVDs, inheriting from LibraryItem.
 class DVD < LibraryItem
-  attr_reader :genre
+  attr_reader :duration
 
-  def initialize(title, author, publication_year, genre)
-    super(title, author, publication_year)
-    @genre = genre
+  def initialize(title, director, genre, publication_year, duration)
+    super(title, director, genre, publication_year)
+    @duration = duration
   end
 
   def display_info
     puts "DVD Details:"
     puts "Title: #{@title}"
-    puts "Author: #{@author}"
-    puts "Publication Year: #{@publication_year}"
+    puts "Director: #{@author}"
     puts "Genre: #{@genre}"
+    puts "Publication Year: #{@publication_year}"
+    puts "Duration: #{@duration}"
     puts ""
   end
 end
 
 # This is the class for CDs, inheriting from LibraryItem.
 class CD < LibraryItem
-  attr_reader :genre
+  attr_reader :track_count
 
-  def initialize(title, artist, publication_year, genre)
-    super(title, artist, publication_year)
-    @genre = genre
+  def initialize(title, artist, genre, publication_year, track_count)
+    super(title, artist, genre, publication_year)
+    @track_count = track_count
   end
 
   def display_info
     puts "CD Details:"
     puts "Title: #{@title}"
-    puts "Author: #{@author}"
-    puts "Publication Year: #{@publication_year}"
+    puts "Artist: #{@author}"
     puts "Genre: #{@genre}"
+    puts "Publication Year: #{@publication_year}"
+    puts "Track Count: #{@track_count}"
     puts ""
   end
 end
@@ -112,9 +116,9 @@ end
 # Testing our code with the provided snippet on Blackboard
 
 # Create instances of different library items
-book = Book.new("Concepts of Programming Languages", "Robert Sebesta", 2015, "Programming")
-dvd = DVD.new("Inception", "Christopher Nolan", 2010, "Science Fiction")
-cd = CD.new("A Day at the Races", "Queen", 1976, "Rock")
+book = Book.new("Concepts of Programming Languages", "Robert Sebesta", 2015, "Programming", "isbn-number")
+dvd = DVD.new("Inception", "Christopher Nolan", 2010, "Science Fiction", 120)
+cd = CD.new("A Day at the Races", "Queen", 1976, "Rock", 7)
 
 # Display items individually
 book.display_info
